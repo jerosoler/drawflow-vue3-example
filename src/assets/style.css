@@ -1,0 +1,60 @@
+.drawflow .drawflow-node {
+    border-radius: 8px;
+    background: #181818;
+    border: 2px solid #494949;
+    color: white;
+    min-width: 250px;
+}
+
+.drawflow .drawflow-node.selected {
+    background: #181818;
+    border: 2px solid rgb(250, 0, 175);
+}
+
+.drawflow .drawflow-node .input, .drawflow .drawflow-node .output {
+    background: #181818;
+    border: 3px solid #494949;
+    width: 20px;
+    height: 20px;
+    margin-top: 14px;
+    margin-bottom: 14px;
+}
+
+.drawflow .drawflow-node .input {
+    left: -45px;
+}
+
+.drawflow .drawflow-node .output {
+    right: -27px;
+}
+
+.drawflow .drawflow-node .output:hover, .drawflow .drawflow-node .input:hover {
+    background: #494949;
+    border: 3px solid rgb(250, 0, 175);
+}
+
+.drawflow .connection .main-path {
+    stroke-width: 3px;
+    stroke: #c5c343;
+}
+
+.drawflow .connection .main-path:hover {
+    stroke: rgb(250, 0, 175);
+}
+
+.parent-node .drawflow-delete {
+    display: none !important;
+}
+
+.drawflow .drawflow-node.selected .drawflow_content_node .header {
+    background:rgb(250, 0, 175);
+}
+
+
+.drawflow .drawflow-node .drawflow_content_node input, .drawflow .drawflow-node .drawflow_content_node .el-select, .drawflow .drawflow-node .drawflow_content_node button {
+    width: 100%; 
+}
+
+.el-drawer__body {
+    color: black;
+}
