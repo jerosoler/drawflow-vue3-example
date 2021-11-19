@@ -8,7 +8,7 @@
   <el-container class="container">
     <el-aside width="250px" class="column">
         <ul>
-            <li v-for="n in listNodes" :key="n" draggable="true" :data-node="n.item" @dragstart="drag($event)">
+            <li v-for="n in listNodes" :key="n" draggable="true" :data-node="n.item" @dragstart="drag($event)" class="drag-drawflow" >
                 <div class="node" :style="`background: ${n.color}`" >{{ n.name }}</div>
             </li>
         </ul>
@@ -111,6 +111,12 @@ export default {
       ev.preventDefault();
     }
 
+   let mobile_item_selec = '';
+   let mobile_last_move = null;
+   function positionMobile(ev) {
+     mobile_last_move = ev;
+   }
+
     function addNodeToDrawFlow(name, pos_x, pos_y) {
       pos_x = pos_x * ( editor.value.precanvas.clientWidth / (editor.value.precanvas.clientWidth * editor.value.zoom)) - (editor.value.precanvas.getBoundingClientRect().x * ( editor.value.precanvas.clientWidth / (editor.value.precanvas.clientWidth * editor.value.zoom)));
       pos_y = pos_y * ( editor.value.precanvas.clientHeight / (editor.value.precanvas.clientHeight * editor.value.zoom)) - (editor.value.precanvas.getBoundingClientRect().y * ( editor.value.precanvas.clientHeight / (editor.value.precanvas.clientHeight * editor.value.zoom)));
@@ -122,6 +128,13 @@ export default {
 
 
    onMounted(() => {
+
+      var elements = document.getElementsByClassName('drag-drawflow');
+      for (var i = 0; i < elements.length; i++) {
+        elements[i].addEventListener('touchend', drop, false);
+        elements[i].addEventListener('touchmove', positionMobile, false);
+        elements[i].addEventListener('touchstart', drag, false );
+      }
         
        const id = document.getElementById("drawflow");
        editor.value = new Drawflow(id, Vue, internalInstance.appContext.app._context);
